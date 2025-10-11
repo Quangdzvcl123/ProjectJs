@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Ký</title>
+    <link rel="stylesheet" href="./Project/Css/signIn&LogOutFunction.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="signup">
+      <div class="signup__container">
+        <h1>Đăng Ký</h1>
+        <form>
+          <h5>Tên đăng nhập</h5>
+          <input
+            type="text"
+            class="input-signup-username"
+            placeholder="Nhập tên đăng ký"
+          />
+
+          <h5>Mật khẩu</h5>
+          <input
+            type="password"
+            class="input-signup-password"
+            placeholder="Nhập mật khẩu"
+          />
+
+          <h5>Nhập lại mật khẩu</h5>
+          <input
+            type="password"
+            class="input-signup-passwordVerify"
+            placeholder="Nhập lại mật khẩu"
+          />
+
+          <button type="submit" class="signup__signInButton">
+            Tạo tài khoản
+          </button>
+        </form>
+        <a href="./signIn.html" class="signup__registerButton"
+          >Đã có tài khoản?</a
+        >
+      </div>
+    </div>
+
+    <!-- Đặt script TRONG body -->
+    <script src="./Project/JS/signup.js"></script>
+  </body>
+</html>
