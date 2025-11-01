@@ -1,58 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wiki Explorer</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
   <style>
     body {
-      font-family: Arial, sans-serif;
       background: #f8f9fa;
-      margin: 0;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding-top: 80px;
     }
-    h1 { color: #202122; }
-    #result {
-      margin-top: 2rem;
-      background: white;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      width: 90%;
-      max-width: 600px;
-    }
-    img {
-      max-width: 100%;
+    .wiki-thumb {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      margin-right: 12px;
       border-radius: 6px;
+    }
+    .section-title {
+      font-weight: bold;
+      border-bottom: 2px solid #0d6efd;
       margin-bottom: 1rem;
+      padding-bottom: 0.25rem;
     }
-    input, button {
-      padding: 0.7rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background: #3366cc;
-      color: white;
+    .related-list div {
       cursor: pointer;
-      margin-left: 8px;
+      transition: background 0.2s;
     }
-    button:hover { background: #264fa3; }
+    .related-list div:hover {
+      background-color: #f3f6ff;
+    }
   </style>
 </head>
 <body>
-  <h1>🔍 Wiki Explorer</h1>
-  <div>
-    <input type="text" id="searchInput" placeholder="Enter a topic...">
-    <button id="searchBtn">Search</button>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid position-relative">
+      <a class="navbar-brand fw-bold" href="#">Wiki Explorer</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="./index.html">Trang chủ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Bài viết</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Giới thiệu</a></li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" id="searchInput" type="search" placeholder="Tìm kiếm trên Wikipedia..." />
+          <button class="btn btn-outline-success" id="searchBtn" type="button">Tìm</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <section class="mt-4">
+  <h4 class="section-title d-flex justify-content-between align-items-center">
+    <span>⭐ Bài viết chọn lọc</span>
+    <div>
+      <button id="addFeaturedBtn" class="btn btn-sm btn-outline-primary me-2">+ Thêm bài viết</button>
+      <button id="hideFeaturedBtn" class="btn btn-sm btn-outline-danger">– Ẩn bài viết</button>
+    </div>
+  </h4>
+  <div id="featuredArticles" class="mb-4"></div>
+</section>
+
+  
+  <!-- 🗓️ NGÀY NÀY NĂM XƯA -->
+  <section class="mt-4">
+    <h4 class="section-title">🗓️ Ngày này năm xưa</h4>
+    <div id="dailyInfo" class="mb-4"></div>
+  </section>
+
+    
+    <section class="mt-4">
+      <h4 class="section-title">🔎 Kết quả tìm kiếm</h4>
+      <div id="results"></div>
+    </section>
   </div>
 
-  <div id="results" class="results"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./Project/JS/script.js"></script>
 
-  <script src=".//Project/JS/script.js"></script>
+     <script>
+      window.embeddedChatbotConfig = {
+        chatbotId: "j5wtbkWIDHhJk1E-ggW7Y",
+        domain: "www.chatbase.co"
+      }
+    </script>
+    <script
+      src="https://www.chatbase.co/embed.min.js"
+      chatbotId="j5wtbkWIDHhJk1E-ggW7Y"
+      domain="www.chatbase.co"
+      defer>
+    </script>
 </body>
 </html>

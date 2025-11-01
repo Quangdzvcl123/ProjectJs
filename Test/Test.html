@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wiki Explorer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding-top: 80px; /* space for navbar */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #results {
+      width: 90%;
+      max-width: 700px;
+    }
+
+    .wiki-card {
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .wiki-card:hover {
+      background: #f0f4ff;
+    }
+
+    .wiki-thumb {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .no-thumb {
+      width: 50px;
+      height: 50px;
+      background: #e9ecef;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #888;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">Wiki Explorer</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#">Trang chủ</a></li>
+        </ul>
+        <form class="d-flex position-relative" role="search">
+          <input class="form-control me-2" id="searchInput" type="search" placeholder="Tìm kiếm trên Wikipedia..." aria-label="Search">
+          <button class="btn btn-outline-success" id="searchBtn" type="button">Tìm</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ✅ Kết quả -->
+  <div id="results" class="results container mt-4"></div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- MathJax để hiển thị công thức toán học -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <!-- Script chính -->
+  <script src="./Test.js"></script>
+</body>
+</html>
