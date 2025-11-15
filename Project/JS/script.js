@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", () => {
   loadFeaturedArticles();
 });
 
-// ======== BÀI VIẾT CHỌN LỌC ========
+// Bài viết chọn lọc
 let featuredArticles = [];
 let featuredShown = 1; // chỉ hiển thị 1 bài đầu tiên
 
@@ -247,7 +247,7 @@ const toggleButton = document.getElementById("themeToggle");
       localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
     });
 
-    // Load saved theme
+    // Tải nền
     if (localStorage.getItem("theme") === "dark") {
       body.classList.add("dark-mode");
       toggleButton.textContent = "☀️ Light Mode";

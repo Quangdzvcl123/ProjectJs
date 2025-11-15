@@ -1,4 +1,4 @@
-// Lấy các phần tử trong form
+
 const inputPasswordVerifyRegister = document.querySelector(".input-signup-passwordVerify");
 const inputUsernameRegister = document.querySelector(".input-signup-username");
 const inputPasswordRegister = document.querySelector(".input-signup-password");
@@ -77,5 +77,5 @@ btnRegister.addEventListener("click", (e) => {
   localStorage.setItem(username, JSON.stringify(user));
 
   alert("Đăng ký thành công!");
-  window.location.href = "http://127.0.0.1:5501/signIn.html";
+  
 });

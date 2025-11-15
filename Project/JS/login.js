@@ -10,7 +10,7 @@ btnLogin.addEventListener("click", (e) => {
     const user = JSON.parse(localStorage.getItem(inputUsername.value));
     if (user && user.username === inputUsername.value && user.password === inputPassword.value) {
       alert("Đăng Nhập Thành Công");
-      window.location.href = "http://127.0.0.1:5501/index.html"; 
+      window.location.href = "https://quangdzvcl123.github.io/ProjectJs/"; 
     } else {
       alert("Đăng Nhập Thất Bại");
     }
