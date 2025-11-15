@@ -6,7 +6,7 @@
   <title>Wiki Explorer</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-
+  <link rel="stylesheet" href="./Project/Css/index.css" />
   <style>
     body {
       background: #f8f9fa;
@@ -31,25 +31,67 @@
     }
     .related-list div:hover {
       background-color: #f3f6ff;
+
     }
+    body.light-mode {
+  background: #f8f9fa;
+  color: #222;
+}
+
+
+/* Dark mode */
+body.dark-mode {
+  background: #1e1e1e;
+  color: #e6e6e6;
+}
+
+body.dark-mode .card {
+  background: #2a2a2a;
+  color: #e6e6e6;
+}
+
+body.dark-mode .navbar {
+  background: #2c2c2c !important;
+}
+
+body.dark-mode a {
+  color: #9ecbff;
+}
+/* Light Mode */
+#dailyInfo .event-card {
+  color: #222;                /* chữ tối */
+  background: #ffffff;
+}
+
+/* Dark Mode */
+.dark-mode #dailyInfo .event-card {
+  color: #f1f1f1 !important;  /* chữ sáng */
+  background: #2b2b2b;
+}
+
+
+
   </style>
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg   fixed-top">
     <div class="container-fluid position-relative">
       <a class="navbar-brand fw-bold" href="#">Wiki Explorer</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
+      
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link active" href="./index.html">Trang chủ</a></li>
+          
+          <li class="nav-item"><a class="nav-link" href="introduction.html">Giới thiệu</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Bài viết</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Giới thiệu</a></li>
+          <li class="nav-item"><a class="nav-link" href="signup.html">Đăng xuất 🔙</a></li>
         </ul>
+        <button id="themeToggle" class="btn btn-sm btn-outline-secondary ms-3 me-3">🌙 Dark Mode</button>
         <form class="d-flex" role="search">
           <input class="form-control me-2" id="searchInput" type="search" placeholder="Tìm kiếm trên Wikipedia..." />
           <button class="btn btn-outline-success" id="searchBtn" type="button">Tìm</button>
@@ -58,32 +100,44 @@
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container mt-4">
+  <div class="row">
     
-    <section class="mt-4">
-  <h4 class="section-title d-flex justify-content-between align-items-center">
-    <span>⭐ Bài viết chọn lọc</span>
-    <div>
-      <button id="addFeaturedBtn" class="btn btn-sm btn-outline-primary me-2">+ Thêm bài viết</button>
-      <button id="hideFeaturedBtn" class="btn btn-sm btn-outline-danger">– Ẩn bài viết</button>
+    <div class="col-lg-8 col-md-7">
+      <section id="featuredSection" class="mb-4">
+        <h4 class="section-title d-flex justify-content-between align-items-center">
+          <span>⭐ Bài viết chọn lọc</span>
+          <div>
+            <button id="addFeaturedBtn" class="btn btn-sm btn-outline-primary me-2">+ Thêm bài viết</button>
+            <button id="hideFeaturedBtn" class="btn btn-sm btn-outline-danger">– Ẩn bài viết</button>
+          </div>
+        </h4>
+        <div id="featuredArticles"></div>
+      </section>
     </div>
-  </h4>
-  <div id="featuredArticles" class="mb-4"></div>
-</section>
-
-  
-  <!-- 🗓️ NGÀY NÀY NĂM XƯA -->
-  <section class="mt-4">
-    <h4 class="section-title">🗓️ Ngày này năm xưa</h4>
-    <div id="dailyInfo" class="mb-4"></div>
-  </section>
 
     
-    <section class="mt-4">
-      <h4 class="section-title">🔎 Kết quả tìm kiếm</h4>
-      <div id="results"></div>
-    </section>
+ <div class="container mt-4">
+  <div class="row">
+    
+    <!-- Cột 1: Ngày này năm xưa -->
+    <div class="col-lg-4 col-md-5">
+      <section id="todayInHistory" class="mb-4">
+        <h4 class="section-title">🗓️ Ngày này năm xưa</h4>
+        <div id="dailyInfo"></div>
+      </section>
+    </div>
+
+    <!-- Cột 2: Kết quả tìm kiếm -->
+    <div class="col-lg-8 col-md-7">
+      <section class="mb-4">
+        <h4 class="section-title">🔎 Kết quả tìm kiếm</h4>
+        <div id="results"></div>
+      </section>
+    </div>
+
   </div>
+</div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./Project/JS/script.js"></script>

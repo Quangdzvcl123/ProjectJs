@@ -1,0 +1,85 @@
+
+#featuredSection {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+#dailyInfo {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+
+.section-title {
+  font-weight: bold;
+  border-bottom: 2px solid #0d6efd;
+  margin-bottom: 1rem;
+  padding-bottom: 0.25rem;
+}
+
+
+#featuredArticles .card {
+  margin-bottom: 12px;
+  border: 1px solid #dee2e6;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#featuredArticles .card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode */
+body.dark-mode #featuredSection,
+body.dark-mode #todayInHistory {
+  background: #1e1e1e;
+  color: #f8f9fa;
+}
+
+body.dark-mode .section-title {
+  border-color: #0dcaf0;
+}
+
+/* Responsive (mobile) */
+@media (max-width: 768px) {
+  #featuredSection, #todayInHistory {
+    margin-bottom: 20px;
+  }
+}
+/* Sửa để ngày này năm xưa có light mode */
+.daily-event {
+  background: #ffffff;
+  color: #222;
+}
+
+.daily-event h6 {
+  color: #222 !important;
+}
+
+.daily-event p {
+  color: #555 !important;
+}
+
+
+/* Ngày này năm xưa-Dark mode*/
+.dark-mode .daily-event {
+  background: #2b2b2b !important;
+  color: #f1f1f1 !important;
+}
+
+.dark-mode .daily-event h6 {
+  color: #ffffff !important;
+}
+
+.dark-mode .daily-event p {
+  color: #e6e6e6 !important;
+}
+
+/* Ảnh tô sáng nhẹ trong Dark Mode */
+.dark-mode .daily-event img {
+  filter: brightness(0.85);
+}

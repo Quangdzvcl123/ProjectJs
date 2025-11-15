@@ -76,12 +76,14 @@ document.getElementById("hideFeaturedBtn").addEventListener("click", () => {
 
  
 // ======== NGÀY NÀY NĂM XƯA ========
+
+// ======== NGÀY NÀY NĂM XƯA ========
 async function loadDailyInfo() {
   const today = new Date();
   const month = today.getMonth() + 1;
   const day = today.getDate();
 
-  // ⚠️ dùng tiếng Anh 
+
   const url = `https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/${month}/${day}`;
 
   const container = document.getElementById("dailyInfo");
@@ -98,7 +100,6 @@ async function loadDailyInfo() {
       return;
     }
 
-    
     data.events.slice(0, 6).forEach(event => {
       const title = event.pages?.[0]?.titles?.normalized || event.text.split("–")[0].trim();
       const extract = event.text;
@@ -106,27 +107,41 @@ async function loadDailyInfo() {
       const thumb = event.pages?.[0]?.thumbnail?.source;
 
       const div = document.createElement("div");
-      div.className = "card mb-2 p-2 shadow-sm wiki-card";
+      div.className = "card mb-2 p-2 shadow-sm wiki-card daily-event daily-event";
       div.innerHTML = `
         <div class="d-flex align-items-center">
-          ${thumb ? `<img src="${thumb}" class="wiki-thumb me-2" alt="${title}">` :
-            `<div class="wiki-thumb bg-light d-flex align-items-center justify-content-center text-secondary">📜</div>`}
+          ${thumb ? `<img src="${thumb}" class="wiki-thumb me-2" alt="${title}">`
+                  : `<div class="wiki-thumb bg-light d-flex align-items-center justify-content-center text-secondary">📜</div>`}
           <div>
             <h6 class="mb-1">${title}</h6>
             <p class="text-muted small mb-0">${extract}</p>
           </div>
-        </div>`;
+        </div>
+      `;
 
+      // nếu không có pageid, dùng title
       if (pageId) {
         div.addEventListener("click", () => showArticleDetail(pageId));
-        div.style.cursor = "pointer";
+      } else if (title) {
+        div.addEventListener("click", () => showArticleDetailByTitle(title));
       }
+      div.style.cursor = "pointer";
 
       container.appendChild(div);
     });
   } catch (err) {
     container.innerHTML = `<p class="text-danger">❌ Không tải được dữ liệu: ${err.message}</p>`;
   }
+}
+
+// ======== Chi tiết bài viết ========
+async function showArticleDetail(pageId) {
+  window.location.href = `article.html?pageid=${pageId}`;
+}
+
+//  mở bài viết theo tên
+function showArticleDetailByTitle(title) {
+  window.location.href = `article.html?title=${encodeURIComponent(title)}`;
 }
 
 
@@ -175,42 +190,9 @@ async function searchWiki() {
   }
 }
 
-// ======== CHI TIẾT BÀI VIẾT ========
-async function showArticleDetail(pageId) {
-  const url = `https://vi.wikipedia.org/w/api.php?action=query&origin=*&format=json&pageids=${pageId}&prop=extracts|pageimages&explaintext&piprop=original`;
 
-  resultsDiv.innerHTML = `<div class="text-center text-secondary">⏳ Đang tải bài viết...</div>`;
 
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
-    const page = Object.values(data.query.pages)[0];
-
-    const imgHTML = page.original
-      ? `<img src="${page.original.source}" alt="${page.title}" class="img-fluid rounded mb-3">`
-      : "";
-    
-    resultsDiv.innerHTML = `
-      <div class="card p-4 shadow-sm">
-        <button id="backBtn" class="btn btn-outline-secondary mb-3">⬅ Quay lại</button>
-        <h3>${page.title}</h3>
-        ${imgHTML}
-        <p>${page.extract.replace(/\n/g, "<br>")}</p>
-        <div id="relatedArticles" class="mt-4"></div>
-      </div>`;
-    
-    document.getElementById("backBtn").addEventListener("click", () => {
-      resultsDiv.innerHTML = "";
-      showFeaturedArticles();
-    });
-
-    loadRelatedArticles(page.title);
-  } catch (err) {
-    resultsDiv.innerHTML = `<p class="text-danger">❌ Không tải được nội dung: ${err.message}</p>`;
-  }
-}
-
-// ======== BÀI LIÊN QUAN ========
+// Nd lquan
 async function loadRelatedArticles(title) {
   const relatedDiv = document.getElementById("relatedArticles");
   relatedDiv.innerHTML = `<h5 class="mt-4">🔗 Bài viết liên quan</h5><div class="text-secondary">Đang tải...</div>`;
@@ -248,3 +230,25 @@ async function loadRelatedArticles(title) {
     relatedDiv.innerHTML += `<p class="text-danger">Không tải được bài liên quan.</p>`;
   }
 }
+
+//Dảk mode 
+const toggleButton = document.getElementById("themeToggle");
+    const body = document.body;
+
+    toggleButton.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
+
+      if (body.classList.contains("dark-mode")) {
+        toggleButton.textContent = "☀️ Light Mode";
+      } else {
+        toggleButton.textContent = "🌙 Dark Mode";
+      }
+
+      localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+    });
+
+    // Load saved theme
+    if (localStorage.getItem("theme") === "dark") {
+      body.classList.add("dark-mode");
+      toggleButton.textContent = "☀️ Light Mode";
+    }
